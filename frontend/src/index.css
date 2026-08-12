@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Colors */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --primary-glow: rgba(99, 102, 241, 0.25);
+
+  /* Light mode surfaces */
+  --bg-page: #f0f2ff;
+  --bg-card: #ffffff;
+  --bg-sidebar: linear-gradient(160deg, #4f46e5 0%, #7c3aed 100%);
+  --bg-header: rgba(255, 255, 255, 0.85);
+  --bg-input: #ffffff;
+  --bg-hover: rgba(99, 102, 241, 0.06);
+  --bg-muted: #f8f9ff;
+
+  /* Borders */
+  --border: #e5e7eb;
+  --border-focus: #6366f1;
+
+  /* Text */
+  --text-heading: #0f172a;
+  --text-body: #374151;
+  --text-muted: #9ca3af;
+  --text-sidebar: rgba(255, 255, 255, 0.75);
+  --text-sidebar-active: #ffffff;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* ============================================
+   DARK MODE TOKENS
+   ============================================ */
+.dark {
+  --bg-page: #0b0f1e;
+  --bg-card: #141929;
+  --bg-sidebar: linear-gradient(160deg, #312e81 0%, #4c1d95 100%);
+  --bg-header: rgba(20, 25, 41, 0.9);
+  --bg-input: #1e2540;
+  --bg-hover: rgba(99, 102, 241, 0.12);
+  --bg-muted: #1e2540;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: #818cf8;
+
+  --text-heading: #f1f5f9;
+  --text-body: #94a3b8;
+  --text-muted: #4b5563;
+  --text-sidebar: rgba(255, 255, 255, 0.65);
+  --text-sidebar-active: #ffffff;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 4px 20px rgba(129, 140, 248, 0.25);
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { transition: color 0.25s, background-color 0.25s; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* ============================================
+   REUSABLE COMPONENTS
+   ============================================ */
+.pm-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.pm-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.pm-card-accent {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--primary);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.pm-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-heading);
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.pm-input:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.pm-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+}
+.pm-input::placeholder { color: var(--text-muted); }
+
+.pm-input-icon {
+  padding-left: 42px;
+}
+
+.pm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: all 0.2s;
+}
+.pm-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+}
+.pm-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pm-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  color: var(--text-body);
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.pm-btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--bg-hover);
+}
+
+.pm-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-body);
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+.pm-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* ============================================
+   GRADIENT TEXT
+   ============================================ */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+.pm-divider {
+  height: 1px;
+  background: var(--border);
+  border: none;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-spin { animation: spin 0.8s linear infinite; }
+.animate-fade-in { animation: fadeInUp 0.35s ease; }
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }

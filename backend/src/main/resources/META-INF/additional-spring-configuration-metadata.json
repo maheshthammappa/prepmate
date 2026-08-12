@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "gemini.api.url",
+    "type": "java.lang.String",
+    "description": "A description for 'gemini.api.url'"
+  },
+  {
+    "name": "gemini.api.key",
+    "type": "java.lang.String",
+    "description": "A description for 'gemini.api.key'"
+  },
+  {
+    "name": "frontend.url",
+    "type": "java.lang.String",
+    "description": "A description for 'frontend.url'"
+  },
+  {
+    "name": "groq.api.key",
+    "type": "java.lang.String",
+    "description": "A description for 'groq.api.key'"
+  },
+  {
+    "name": "pinecone.api.key",
+    "type": "java.lang.String",
+    "description": "A description for 'pinecone.api.key'"
+  },
+  {
+    "name": "pinecone.index.host",
+    "type": "java.lang.String",
+    "description": "A description for 'pinecone.index.host'"
+  }
+]}
