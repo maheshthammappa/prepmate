@@ -1,0 +1,2 @@
+# Problem Statement
+Candidates often struggle to find relevant, level-appropriate interview questions and lack access to immediate, constructive feedback. Traditional mock interviews are expensive and difficult to schedule. PrepMate solves this by providing on-demand, AI-driven mock interviews and detailed evaluations.
