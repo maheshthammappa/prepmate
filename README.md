@@ -233,3 +233,18 @@ This project is licensed under the **MIT License**.
 <div align="center">
   Built with ❤️ using Google Gemini, Spring Boot, and React
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+but you use images and figures wherever needed and content should be fully based on project not on your own okay these are strict rules remeber 
