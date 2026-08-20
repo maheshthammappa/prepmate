@@ -164,7 +164,7 @@ export default function MainLayout() {
               }}>
                 <User style={{ width: '12px', height: '12px', color: '#fff' }} />
               </div>
-              {user?.username}
+              <span style={{ textTransform: 'uppercase' }}>{user?.username}</span>
             </Link>
           </div>
         </header>
