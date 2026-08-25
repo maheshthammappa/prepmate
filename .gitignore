@@ -61,3 +61,17 @@ lerna-debug.log*
 *.temp
 .cache/
 .parcel-cache/
+
+# ── Frontend Specific ─────────────────────────────
+node_modules/
+dist/
+dist-ssr/
+build/
+.vite/
+coverage/
+storybook-static/
+
+# ── Backend Specific ──────────────────────────────
+target/
+.mvn/wrapper/maven-wrapper.jar
+HELP.md

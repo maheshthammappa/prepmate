@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
-/* ============================================
-   DESIGN TOKENS
-   ============================================ */
+@theme {
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+}
+
 :root {
   /* Colors */
   --primary: #6366f1;
