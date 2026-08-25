@@ -25,10 +25,10 @@ jobs:
         cache-dependency-path: './frontend/package-lock.json'
         
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
       
     - name: Run Linter
-      run: npm run lint
+      run: npx oxlint@latest
       
     - name: Build Application
       run: npm run build
