@@ -6,7 +6,7 @@ import { interviewApi } from '../interview.api';
 
 export default function InterviewSession() {
   const navigate = useNavigate();
-  const { activeSession, answers, setAnswers, saveAnswer, submitInterview, isEvaluating } = useInterview();
+  const { activeSession, answers, setAnswers, saveAnswer, submitInterview, isEvaluating, sessionEndTime } = useInterview();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -77,12 +77,17 @@ export default function InterviewSession() {
     }
   }, [currentIndex]);
 
-  useEffect(() => { if (activeSession) setTimeLeft(activeSession.duration * 60); }, [activeSession]);
   useEffect(() => {
-    if (timeLeft <= 0) return;
-    const timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+    if (!sessionEndTime) return;
+    const calculateTimeLeft = () => Math.max(0, Math.floor((sessionEndTime - Date.now()) / 1000));
+    setTimeLeft(calculateTimeLeft());
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+    
     return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, [sessionEndTime]);
 
   if (!activeSession) return <Navigate to="/app/interviews/new" replace />;
 
