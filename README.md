@@ -60,44 +60,23 @@
 ## 🏗️ System Architecture
 
 ```mermaid
-graph TD
-    subgraph Client ["Client Layer (React 19 + Vite)"]
-        UI[Tailwind CSS & Glassmorphism UI]
-        Audio[MediaRecorder Audio Capture]
-        State[React Router v7 + Context State]
-    end
+flowchart TD
+    A["🖥️ Frontend Client (React 19 + Vite)"]
+    -->|"JWT Authenticated Requests / Audio Stream"| B["🛡️ Spring Security & JWT Filter"]
 
-    subgraph API ["Backend API Layer (Spring Boot 3 / Java 21)"]
-        Sec[Spring Security + JWT Filter]
-        AuthCtrl[AuthController]
-        IntCtrl[InterviewController]
-        PDF[Apache PDFBox 3.0 Parser]
-    end
+    B --> C["⚙️ Spring Boot REST API (Java 21)"]
 
-    subgraph AIServices ["AI & Intelligence Engine"]
-        Gemini[Google Gemini 2.5 Flash]
-        GeminiEmbed[Gemini Embedding 001]
-        Groq[Groq Cloud Whisper-large-v3]
-    end
+    C --> D["👤 Auth & Profile Service"]
+    C --> E["🎯 Interview & Evaluation Engine"]
+    C --> F["📄 Resume Parser (Apache PDFBox)"]
 
-    subgraph Storage ["Data & Vector Layer"]
-        PG[(PostgreSQL - Neon / Supabase)]
-        Pinecone[(Pinecone Vector DB - 768 Dim)]
-    end
+    E -->|"Speech-to-Text Transcription"| G["⚡ Groq Cloud (Whisper-large-v3)"]
+    E -->|"Generation, Evaluation & Mentor Chat"| H["🤖 Google Gemini (2.5 Flash)"]
+    E -->|"Vector Embeddings (768-dim)"| I["🧠 Gemini Embedding API"]
 
-    UI -->|JWT Authenticated REST| Sec
-    Audio -->|Multipart Audio Stream| IntCtrl
-    Sec --> AuthCtrl
-    Sec --> IntCtrl
-    IntCtrl --> PDF
-
-    AuthCtrl -->|Persist Users & Profiles| PG
-    IntCtrl -->|Persist Sessions, Scores & Weaknesses| PG
-
-    IntCtrl -->|Generate / Evaluate / Mentor Chat| Gemini
-    IntCtrl -->|Transcribe Audio| Groq
-    IntCtrl -->|Generate Vector Embeddings| GeminiEmbed
-    IntCtrl -->|Similarity Deduplication & Upsert| Pinecone
+    I -->|"Similarity Deduplication & Upsert"| J[("🌲 Pinecone Vector Database")]
+    D -->|"Users, History & Profiles"| K[("🐘 PostgreSQL Database (Neon)")]
+    E -->|"Sessions, Weaknesses & Scores"| K
 ```
 
 ---
